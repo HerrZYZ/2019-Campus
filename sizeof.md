@@ -91,7 +91,6 @@ int main() {
 */
 ```
 注意foo2和foo3, 它们定义成员变量的顺序导致了它们size不同！原因是编译器做了对齐。见[stackoverflow](https://stackoverflow.com/questions/14510711/how-is-the-size-of-a-c-class-determined)
-与不同编译器对string的实现有很大关系，见[cnblogs](https://www.cnblogs.com/tntboom/p/4550271.html)
 ### 带成员函数的类
 [stackoverflow](https://stackoverflow.com/questions/6552319/c-sizeof-of-a-class-with-functions):
 >Member functions aren't physically "inside" a class, they're really just free functions with a hidden argument and a namespace and access control
@@ -139,6 +138,7 @@ printf("%d\n",sizeof(std::string));
 8
 */
 ```
+与不同编译器对string的实现有很大关系，见[cnblogs](https://www.cnblogs.com/tntboom/p/4550271.html)
 ### 其它
 [知乎](https://www.zhihu.com/question/26090484)
 >sizeof 这个编译时函数的目的是得到一个变量或类型占用的字节数，它的求值是由编译器完成时，没有运行时逻辑
