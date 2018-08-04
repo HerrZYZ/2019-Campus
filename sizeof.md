@@ -51,8 +51,8 @@ printf("%d\n",sizeof("abcd"));
 /* 输出
 5
 /*
-因为"abcd"类型为char[5], 注意结尾有个'\0'
 ```
+因为"abcd"类型为char[5], 注意结尾有个'\0'
 ### 空类
 ```cpp
 class foo {
@@ -139,3 +139,6 @@ printf("%d\n",sizeof(std::string));
 8
 */
 ```
+### 其它
+[知乎](https://www.zhihu.com/question/26090484)
+>sizeof 这个编译时函数的目的是得到一个变量或类型占用的字节数，它的求值是由编译器完成时，没有运行时逻辑
