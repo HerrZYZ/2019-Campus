@@ -49,7 +49,7 @@ ELF Header:
   Number of section headers:         12
   Section header string table index: 11
 ```
-There is no program headers in a.o, offset of section headers is 792 bytes
+There are no program headers in a.o, the offset of section headers is 792 bytes
 
 ### Section headers
 Go to offset 792
@@ -66,13 +66,13 @@ According to [WikiPedia](https://en.wikipedia.org/wiki/Executable_and_Linkable_F
 
 ![](https://github.com/PanJianning/CPP-Basic-Question/blob/master/pictures/modified_text%20section.png)
 
-Actually, this is the .text section.
+Actually, this is the .text section.(see wiki for the meaning of above field)
 
 Run the following command
 ```
 readelf a.o -S
 ```
-We would know that there 12 section headers in total.
+We would know that there are 12 section headers in total.
 ```
 There are 12 section headers, starting at offset 0x318:
 
