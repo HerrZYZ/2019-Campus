@@ -139,3 +139,6 @@ String dump of section '.strtab':
 ```
 #### .shstrtab section at 0x2b8
 ![shstrtab section](https://github.com/PanJianning/CPP-Basic-Question/blob/master/pictures/shstrtab.PNG)
+
+### Memory Layout
+see this [Gist](https://gist.github.com/CMCDragonkai/10ab53654b2aa6ce55c11cfc5b2432a4)
