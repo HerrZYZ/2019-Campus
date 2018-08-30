@@ -8,13 +8,34 @@
 
 from [知乎](https://www.zhihu.com/question/34574154/answer/253165162)
 
-#### 二. 指针 VS 引用
+#### 二. 指针常量 vs 常量指针
 [知乎](https://www.zhihu.com/question/37608201)
 ```cpp
-int num = 1;
-const int* p_num1 = a;
-int* const p_num2 = a;
+#include <cstdio>
+int main() {
+    int a = 1;
+    int b = 2;
+    int* p1 = &a;
+    const int* p2 = &a;
+    int* const p3 = &a;
+    *p1 = 1; //OK
+    p1 = &b; //OK
+
+    *p2 = 2; //not OK
+    p2 = &b; //OK
+
+    *p3 = 2; //OK
+    p3 = &b; //not OK
+}
 ```
-引用怎么实现的？
+#### 三. 引用怎么实现的？
 [Stackoverflow](https://stackoverflow.com/questions/3954764/how-is-reference-implemented-internally)
 >The natural implementation of a reference is indeed a pointer. However, do not depend on this in your code
+```cpp
+int int_int_bss; //in bss section, 4 bytes
+int& p = int_int_bss; //p in data section, 8 bytes
+```
+```
+text    data     bss     dec     hex filename
+0       8       4      12       c reference.o
+```
