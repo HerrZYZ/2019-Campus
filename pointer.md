@@ -39,3 +39,8 @@ int& p = int_int_bss; //p in data section, 8 bytes
 text    data     bss     dec     hex filename
 0       8       4      12       c reference.o
 ```
+
+#### 四. 为何能从函数返回unique_ptr？
+>unique_ptr<T> does not allow copy construction, instead it supports move semantics. Yet, I can return a unique_ptr<T> from a function and assign the returned value to a variable. why?
+    
+[Stackoverflow](https://stackoverflow.com/questions/4316727/returning-unique-ptr-from-functions)
