@@ -1,7 +1,4 @@
-一些C++基础问题
-
-[sizeof试验与解释](https://github.com/PanJianning/CPP-Basic-Question/blob/master/sizeof.md)
-
-#Dynamic Binding, RTTI
-
-#Vector内存分配
+1. C++基础问题
+2. 推荐系统
+3. 操作系统
+4. 海量数据
