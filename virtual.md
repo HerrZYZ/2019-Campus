@@ -28,3 +28,69 @@ Base *b = new Derived();
 // use b
 delete b; // Here's the problem!, that's why destructor should be virtual!
 ```
+
+### How virtual function's are called?
+```cpp
+#include <cstdio>
+
+class Animal {
+public:
+    virtual void _666() {
+        printf("666");
+    }
+    virtual void _wow() {
+        printf("wow");
+    }
+    ~Animal(){};
+};
+
+int _2333(int dummy, Animal* animal) {
+    dummy++;
+    animal->_666();
+    animal->_wow();
+    return dummy;
+}
+```
+asm:
+```asm
+	.file	"virtial.cpp"
+	.intel_syntax noprefix
+	.text
+	.globl	_Z5_2333iP6Animal
+	.type	_Z5_2333iP6Animal, @function
+_Z5_2333iP6Animal:
+.LFB5:
+	.cfi_startproc
+	push	rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	mov	rbp, rsp
+	.cfi_def_cfa_register 6
+	sub	rsp, 16
+	mov	DWORD PTR -4[rbp], edi  # rbp~rbp-4 is dummy
+	mov	QWORD PTR -16[rbp], rsi # rbp-8~rbp-16 is animal pointer
+	add	DWORD PTR -4[rbp], 1 # add dummy
+	mov	rax, QWORD PTR -16[rbp] # rax's value = animial address
+	mov	rax, QWORD PTR [rax] # rax's value = vptr's value(i.e. vtable's addr)
+	mov	rax, QWORD PTR [rax] # rax's value = first virtual fun's address
+	mov	rdx, QWORD PTR -16[rbp] 
+	mov	rdi, rdx
+	call	rax  # call _666
+	mov	rax, QWORD PTR -16[rbp] # rax's value = animial address
+	mov	rax, QWORD PTR [rax] # rax's value = vptr's value
+	add	rax, 8  # rax's value = vtable's address + 8
+	mov	rax, QWORD PTR [rax] # rax's value = second virtual fun's address
+	mov	rdx, QWORD PTR -16[rbp]
+	mov	rdi, rdx
+	call	rax # call second virtual fun
+	mov	eax, DWORD PTR -4[rbp]
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE5:
+	.size	_Z5_2333iP6Animal, .-_Z5_2333iP6Animal
+	.ident	"GCC: (Ubuntu 7.3.0-16ubuntu3) 7.3.0"
+	.section	.note.GNU-stack,"",@progbits
+
+```
